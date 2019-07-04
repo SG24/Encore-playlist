@@ -1,27 +1,16 @@
+// importing modules
 import React, { Component } from "react";
-import "./App.scss";
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import Home from "./HomePage";
 
-class Login extends React.Component {
-	render() {
-		return (
-			<div>
-				<button>
-					<a href="/auth/github">Log in using Github!</a>
-				</button>
-			</div>
-		);
-	}
-}
-
+// defining app component
 class App extends Component {
 	render() {
 		return (
-			<div className="App">
-				<h1>Encore</h1>
-				<Login />
-			</div>
+			<Home />
 		);
 	}
 }
 
+// exporting add component
 export default App;
