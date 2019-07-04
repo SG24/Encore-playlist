@@ -14,7 +14,6 @@ class Dashboard extends React.Component {
 	render() {
 
 		if (!auth.getUserID().success) {
-			console.log(auth.getUserID());
 			// TODO fix async call below
 			auth.logOutUser();
 			return (<Redirect to="/" />);

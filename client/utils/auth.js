@@ -29,17 +29,12 @@ let auth = {
         localStorage.setItem("encore-name", data.user.name);
         localStorage.setItem("encore-username", data.user.username);
         localStorage.setItem("encore-success", true);
-        return data.user;
       }
       else if (!data.success) {
         alert(data.message);
         localStorage.setItem("encore-error", data.message);
         localStorage.setItem("encore-success", false);
-        return data.message;
       }
-    })
-    .then(result => {
-      return Promise.resolve(result);
     });
 },
 
