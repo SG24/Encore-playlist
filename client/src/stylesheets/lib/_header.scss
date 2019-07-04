@@ -1,0 +1,76 @@
+.header {
+    width: 100%;
+    background: $gray;
+    padding: 1rem 2rem;
+}
+.logo {
+    font-size: 1.5rem;
+    a {
+        color: $blue;
+
+        &:hover {
+            color: $lightblue;
+        }
+    }
+}
+
+.userlinks {
+    background: $gray;
+}
+
+.username {
+    display: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.5rem;
+    color: $blue;
+    &:hover {
+        color: $lightblue;
+    }
+}
+
+.user-icon {
+    border-radius: 50%;
+    padding: 0.5rem;
+    width: 2.25rem;
+    height: 2.25rem;
+}
+.links {
+    width: 100%;
+    left: 0;
+    text-align: center;
+    background: $gray;
+}
+.header-item {
+    padding: 0.5rem;
+    a span {
+        font-weight: 700;
+        font-size: 0.8rem;
+        color: $blue;
+
+        &:hover {
+            color: $lightblue;
+        }
+    }
+    text-align: right;
+}
+
+@media all and (min-width: 768px) {
+    .header {
+        padding: 0 4.25rem;
+    }
+
+    .logo {
+        font-size: 3rem;
+    }
+
+    .username {
+        display: inline;
+    }
+
+    .links {
+        width: fit-content;
+        left: initial;
+    }
+
+}

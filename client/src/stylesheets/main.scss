@@ -11,5 +11,8 @@
 // footer
 @import "./lib/footer";
 // homepage
-@import "./homepage";
-@import "./login";
+@import "homepage";
+@import "login";
+@import "profile";
+// Universal playlist
+@import "dashboard";
