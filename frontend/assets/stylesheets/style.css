@@ -352,6 +352,15 @@ aside {
   height: 100%;
   display: none;
   margin-top: 2rem; }
+  .playlist-form h2 {
+    margin-bottom: 2rem; }
+
+.add-song {
+  display: none;
+  width: 300px;
+  background: #EBF5EE;
+  padding: 1rem;
+  padding-top: 0; }
 
 .my-playlist {
   width: 100%; }

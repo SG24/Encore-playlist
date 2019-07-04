@@ -37,7 +37,24 @@ aside {
     height: 100%;
     display: none;
     margin-top: 2rem;
+
+    h2 {
+        margin-bottom: 2rem;
+    }
 }
+
+// .hidden {
+//     display: none;
+// }
+
+.add-song {
+    display: none;
+    width: 300px;
+    background: $gray;
+    padding: 1rem;
+    padding-top: 0;
+}
+
 .my-playlist {
     width: 100%;
 }

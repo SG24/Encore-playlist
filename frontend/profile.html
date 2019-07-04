@@ -72,10 +72,17 @@
                     </form>
                 </article>
 
-                <article class="playlist-form" id="playlist-form">
+                <article class="playlist-form text-center" id="playlist-form">
+                    <h2>Create Playlist</h2>
                     <form action="" class="form-control text-center">
-                        <input type="submit" value="LogIn">
+                        <input id="search-song" type="text" placeholder="Search your Song">
                     </form>
+                    <div class="hidden">
+                        <span class="add-song">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Add Your Own Song</span>
+                        </span>
+                    </div>
                 </article>
 
                 <article class="my-playlist text-center" id="my-playlist">
@@ -90,27 +97,6 @@
                 </article>
             </section>
         </main>
-
-        <script>
-            document.getElementById("add-song-btn").addEventListener("click", function showForm() {
-                document.getElementById("song-form").style.display = "block";
-                document.getElementById("my-playlist").style.display = "none";
-                document.getElementById("playlist-form").style.display = "none";
-            });
-
-            document.getElementById("create-playlist-btn").addEventListener("click", function showForm1() {
-                document.getElementById("playlist-form").style.display = "block";
-                document.getElementById("my-playlist").style.display = "none";
-                document.getElementById("song-form").style.display = "none";
-            });
-
-            document.getElementById("playlist-btn").addEventListener("click", function showPlaylist() {
-                document.getElementById("playlist-form").style.display = "none";
-                document.getElementById("my-playlist").style.display = "block";
-                document.getElementById("song-form").style.display = "none";
-            });
-        </script>
-
         <!-- Footer -->
         <footer class="footer">
             <nav class="footer-nav">
@@ -141,5 +127,31 @@
                 <p><small>&copy;</small> <span>ENCORE</span> by AltCampus</p>
             </section>
         </footer>
+        <script>
+            document.getElementById("add-song-btn").addEventListener("click", function showForm() {
+                document.getElementById("song-form").style.display = "block";
+                document.getElementById("my-playlist").style.display = "none";
+                document.getElementById("playlist-form").style.display = "none";
+            });
+
+            document.getElementById("create-playlist-btn").addEventListener("click", function showForm1() {
+                document.getElementById("playlist-form").style.display = "block";
+                document.getElementById("my-playlist").style.display = "none";
+                document.getElementById("song-form").style.display = "none";
+            });
+
+            document.getElementById("playlist-btn").addEventListener("click", function showPlaylist() {
+                document.getElementById("playlist-form").style.display = "none";
+                document.getElementById("my-playlist").style.display = "block";
+                document.getElementById("song-form").style.display = "none";
+            });
+            const SONG = document.getElementById("search-song");
+            SONG.addEventListener("focus", () => {
+                document.getElementsByClassName("add-song")[0].style.display = "inline-block";
+            });
+            SONG.addEventListener("blur", () => {
+                document.getElementsByClassName("add-song")[0].style.display = "none";
+            });
+        </script>
     </body>
 </html>
