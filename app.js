@@ -64,6 +64,7 @@ app.use(
 //   store: new MongoStore({ url: "mongodb://localhost/encore-session" })
 //  })
 // );
+
 app.use(passport.session());
 // serializing and deserializing user sessions
 passport.serializeUser(function(user, done) {
