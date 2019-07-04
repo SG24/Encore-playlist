@@ -364,7 +364,7 @@ p {
     color: #5A5766; }
 
 .add-song {
-  display: none;
+  display: inline-block;
   width: 300px;
   background: #EBF5EE;
   padding: 1rem;
