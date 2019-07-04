@@ -46,7 +46,7 @@ app.set("views", path.join(__dirname, "./server/views"));
 app.set("view engine", "ejs");
 
 // integrating sessions
-<<<<<<< HEAD
+
 app.use(
 	session({
 		secret: "encore",
@@ -55,7 +55,7 @@ app.use(
 		store: new MongoStore({ url: "mongodb://localhost/encore-session" })
 	})
 );
-=======
+
 // app.use(
 //  session({
 //   secret: "encore",
@@ -72,7 +72,6 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
   done(null, user);
 });
->>>>>>> 3d4cb542ae2953d96c8c04e75cc493a2727bafd0
 
 if (process.env.NODE_ENV === "development") {
 	var webpack = require("webpack");

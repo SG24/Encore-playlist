@@ -1,27 +1,32 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Redirect, Switch } from "react-router-dom";
 import "./App.scss";
 
 class Login extends React.Component {
-	// onClickHandler = () => {
-	//   fetch("https://github.com/login/oauth/authorize")
-	// 		.then(response => {
-	// 			if (response.status === 200) {
-	// 				console.log("Connected to github");
-	// 				this.props.history.push("/auth/github");
-	// 			}
-	// 		})
-	// 		.catch(error => console.log(error));
-	// };
+	constructor(props) {
+		super(props);
+		this.state = {
+			redirect: false
+		};
+	}
+
+	onClickHandler = () => {
+		this.setState({ redirect: true });
+	};
 
 	render() {
+		let { redirect } = this.state;
+		if (redirect) {
+			return (
+				<BrowserRouter>
+					<Redirect exact to="/auth/github" />
+				</BrowserRouter>
+			);
+		}
 		return (
-			// <button onClick={this.onClickHandler}>Login Using Github!</button>
-			<BrowserRouter>
-				<button>
-					<Link to="/auth/github">Login using GitHub!</Link>
-				</button>
-			</BrowserRouter>
+			<div>
+				<button onClick={this.onClickHandler}>Log in using Github!</button>
+			</div>
 		);
 	}
 }
