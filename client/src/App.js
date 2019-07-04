@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { BrowserRouter, Redirect, Switch } from "react-router-dom";
 import "./App.scss";
 
 class Login extends React.Component {
