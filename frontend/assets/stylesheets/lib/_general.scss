@@ -10,32 +10,33 @@
    
   
   // Dropdown menu
-//   #drop {
-//       display: none;
-//   }
+  #drop {
+      display: none;
+  }
   
-//   .toggle {
-//       color: $text-primary;
-//       background: $black;
-//       padding: 0.5rem 1.25rem;
-//   }
+  .toggle {
+      background: $white;
+      padding: 0.5rem 0;
+  }
   
-//   .toggle {
-//       display: inline-block;
-//       position: relative;
-//       z-index: 99;
-//   }
+  .toggle {
+      display: inline-block;
+      position: relative;
+      z-index: 99;
+  }
   
-//   .links {
-//       display: none;
-//   }
+  .links {
+      display: none;
+      padding: 0.5rem;
+  }
   
-//   #drop:checked ~ .links {
-//       display: flex;
-//       flex-direction: column;
-//       align-items: center;
-//       justify-content: center;
-//   }
+  #drop:checked ~ .links {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
   
   // social icons
   
