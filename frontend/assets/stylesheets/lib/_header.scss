@@ -1,12 +1,16 @@
 .header {
     width: 100%;
     background: $gray;
-    padding: 1rem 1rem;
+    padding: 1rem 2rem;
 }
 .logo {
     font-size: 1.5rem;
     a {
         color: $blue;
+
+        &:hover {
+            color: $lightblue;
+        }
     }
 }
 
@@ -20,6 +24,9 @@
     font-weight: 700;
     padding: 0.5rem;
     color: $blue;
+    &:hover {
+        color: $lightblue;
+    }
 }
 
 .user-icon {
@@ -40,13 +47,17 @@
         font-weight: 700;
         font-size: 0.8rem;
         color: $blue;
+
+        &:hover {
+            color: $lightblue;
+        }
     }
     text-align: right;
 }
 
 @media all and (min-width: 768px) {
     .header {
-        padding: 0 2rem;
+        padding: 0 4.25rem;
     }
 
     .logo {
@@ -62,9 +73,4 @@
         left: initial;
     }
 
-    .header-item:hover {
-        a span {
-            color: $metallic;
-        }
-    }
 }

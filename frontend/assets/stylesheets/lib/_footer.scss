@@ -9,12 +9,10 @@
     a {
         color: $blue;
         font-size: 1.25rem;
-    }
-}
 
-.footer-item:hover {
-    a {
-        color: $golden;
+        &:hover {
+            color: $darkgreen;
+        }
     }
 }
 
@@ -26,7 +24,8 @@
     }
 
     span {
-        border-bottom: 1px solid $text-primary;
+        color: $darkgreen;
+        border-bottom: 1px solid $darkgreen;
     }
 }
 
