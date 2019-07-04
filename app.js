@@ -15,6 +15,7 @@ const port = require("./server/config/config").port;
 
 // importing routers
 let authRouter = require("./server/routes/auth");
+let errorRouter = require("./server/routes/loginerror");
 
 // initialising passport
 app.use(passport.initialize());
@@ -24,12 +25,14 @@ require("./server/utils/githubOAuth");
 
 // connecting mongoose to mongodb
 mongoose.connect(
- "mongodb://localhost/encore",
- { useNewUrlParser: true },
- function(err, connection) {
-  err ? console.log(__filename + ": Mongoose not connected to MongoDB.") : console.log(__filename + ": Mongoose connected to MongoDB.");
- }
-)
+	"mongodb://localhost/encore",
+	{ useNewUrlParser: true },
+	function(err, connection) {
+		err
+			? console.log(__filename + ": Mongoose not connected to MongoDB.")
+			: console.log(__filename + ": Mongoose connected to MongoDB.");
+	}
+);
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -43,6 +46,16 @@ app.set("views", path.join(__dirname, "./server/views"));
 app.set("view engine", "ejs");
 
 // integrating sessions
+<<<<<<< HEAD
+app.use(
+	session({
+		secret: "encore",
+		resave: true,
+		saveUninitialized: true,
+		store: new MongoStore({ url: "mongodb://localhost/encore-session" })
+	})
+);
+=======
 // app.use(
 //  session({
 //   secret: "encore",
@@ -59,20 +72,21 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
   done(null, user);
 });
+>>>>>>> 3d4cb542ae2953d96c8c04e75cc493a2727bafd0
 
 if (process.env.NODE_ENV === "development") {
- var webpack = require("webpack");
- var webpackConfig = require("./webpack.config");
- var compiler = webpack(webpackConfig);
+	var webpack = require("webpack");
+	var webpackConfig = require("./webpack.config");
+	var compiler = webpack(webpackConfig);
 
- app.use(
-  require("webpack-dev-middleware")(compiler, {
-   noInfo: true,
-   publicPath: webpackConfig.output.publicPath
-  })
- );
+	app.use(
+		require("webpack-dev-middleware")(compiler, {
+			noInfo: true,
+			publicPath: webpackConfig.output.publicPath
+		})
+	);
 
- app.use(require("webpack-hot-middleware")(compiler));
+	app.use(require("webpack-hot-middleware")(compiler));
 }
 
 app.use(cors());
@@ -81,8 +95,9 @@ app.use(cors());
 app.use("/auth", authRouter);
 app.use("/api", require("./server/routes/api"));
 app.use(require("./server/routes/index"));
+app.use("/loginerror", errorRouter);
 
 // adding port
 app.listen(port, () => {
- console.log(`server is running on http://localhost:${port}`);
+	console.log(`server is running on http://localhost:${port}`);
 });
