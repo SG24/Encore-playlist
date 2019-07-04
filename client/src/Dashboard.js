@@ -1,17 +1,28 @@
+// imports modules
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
-import Profile from "./Profile";
+// imports auth utils
+import auth from "./../utils/auth";
 
 class Dashboard extends React.Component {
+
+	componentDidMount = () => {
+
+	}
+
 	render() {
+
+		if (!auth.getUserID().success) {
+			console.log(auth.getUserID());
+			// TODO fix async call below
+			auth.logOutUser();
+			return (<Redirect to="/" />);
+		}
+
 		return (
 			<>
 				<h1>Dashboard</h1>
-				<Link to="/profile">Profile</Link>
-				<BrowserRouter>
-					<Route path="/profile" component={Profile} />
-				</BrowserRouter>
 			</>
 		);
 	}

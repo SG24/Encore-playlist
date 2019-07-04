@@ -2,12 +2,22 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import Home from "./HomePage";
+import Dashboard from "./Dashboard";
+import Profile from "./Profile";
 
 // defining app component
 class App extends Component {
 	render() {
 		return (
-			<Home />
+			<BrowserRouter>
+
+				<div>
+					<Route path="/dashboard" component={Dashboard} />
+					<Route path="/me" component={Profile} />
+					<Route exact path="/" component={Home} />
+				</div>
+
+			</BrowserRouter>
 		);
 	}
 }
