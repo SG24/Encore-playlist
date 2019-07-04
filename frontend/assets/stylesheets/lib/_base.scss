@@ -4,7 +4,7 @@ html {
     line-height: 1.5;
   }
   body {
-    font-family: $font-family;
+    font-family: $font;
     line-height: 1.5;
   }
   h1 {
@@ -53,6 +53,11 @@ html {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .flex-around {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
   .flex-start {
     display: flex;
