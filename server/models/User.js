@@ -11,11 +11,6 @@ let userSchema = new mongoose.Schema({
   name: {
     type: String,
   },
-  // user password
-  // password: {
-  //   type: String,
-  //   required: true,
-  // },
   // login username of the user
   username: {
     type: String,
@@ -38,8 +33,8 @@ let userSchema = new mongoose.Schema({
 userSchema.methods.toJSON = function () {
   let user = this;
   let userObject = user.toObject();
-  let { username, email, avatar_url } = userObject;
-  return { username, email, avatar_url };
+  let { username, email, name, avatar_url } = userObject;
+  return { username, email, avatar_url, name };
 }
 
 // Defining user model and instance methods
