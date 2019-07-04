@@ -11,18 +11,21 @@ const port = require("./server/config/config").port;
 
 // importing routers
 let authRouter = require("./server/routes/auth");
+let errorRouter = require("./server/routes/loginerror");
 
 // importing github oauth
 require("./server/utils/githubOAuth");
 
 // connecting mongoose to mongodb
 mongoose.connect(
- "mongodb://localhost/encore",
- { useNewUrlParser: true },
- function(err, connection) {
-  err ? console.log(__filename + ": Mongoose not connected to MongoDB.") : console.log(__filename + ": Mongoose connected to MongoDB.");
- }
-)
+	"mongodb://localhost/encore",
+	{ useNewUrlParser: true },
+	function(err, connection) {
+		err
+			? console.log(__filename + ": Mongoose not connected to MongoDB.")
+			: console.log(__filename + ": Mongoose connected to MongoDB.");
+	}
+);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,27 +39,27 @@ app.set("view engine", "ejs");
 
 // integrating sessions
 app.use(
- session({
-  secret: "encore",
-  resave: true,
-  saveUninitialized: true,
-  store: new MongoStore({ url: "mongodb://localhost/encore-session" })
- })
+	session({
+		secret: "encore",
+		resave: true,
+		saveUninitialized: true,
+		store: new MongoStore({ url: "mongodb://localhost/encore-session" })
+	})
 );
 
 if (process.env.NODE_ENV === "development") {
- var webpack = require("webpack");
- var webpackConfig = require("./webpack.config");
- var compiler = webpack(webpackConfig);
+	var webpack = require("webpack");
+	var webpackConfig = require("./webpack.config");
+	var compiler = webpack(webpackConfig);
 
- app.use(
-  require("webpack-dev-middleware")(compiler, {
-   noInfo: true,
-   publicPath: webpackConfig.output.publicPath
-  })
- );
+	app.use(
+		require("webpack-dev-middleware")(compiler, {
+			noInfo: true,
+			publicPath: webpackConfig.output.publicPath
+		})
+	);
 
- app.use(require("webpack-hot-middleware")(compiler));
+	app.use(require("webpack-hot-middleware")(compiler));
 }
 
 app.use(cors());
@@ -65,8 +68,9 @@ app.use(cors());
 app.use("/auth", authRouter);
 app.use("/api", require("./server/routes/api"));
 app.use(require("./server/routes/index"));
+app.use("/loginerror", errorRouter);
 
 // adding port
 app.listen(port, () => {
- console.log(`server is running on http://localhost:${port}`);
+	console.log(`server is running on http://localhost:${port}`);
 });
