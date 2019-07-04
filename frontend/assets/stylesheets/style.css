@@ -276,7 +276,7 @@ p {
 .text-container {
   padding: 0 1rem; }
   .text-container .main-heading {
-    font-size: 6rem;
+    font-size: 5rem;
     color: rgba(40, 48, 68, 0.9); }
   .text-container .tag-line {
     color: rgba(255, 255, 255, 0.8);
@@ -295,12 +295,14 @@ p {
     color: rgba(255, 255, 255, 0.8); }
 
 @media all and (max-width: 562px) {
+  html {
+    font-size: 12px; }
   .break {
     display: none; } }
 
 .form-control {
   background: #EBF5EE;
-  width: 360px;
+  width: 300px;
   padding: 0.8rem;
   margin: 0 auto; }
   .form-control input {
@@ -315,3 +317,57 @@ p {
 .login-heading {
   font-size: 2rem;
   margin: 1rem 0; }
+
+aside {
+  border-right: 0.5rem solid #EBF5EE; }
+
+.profile-pic img {
+  width: 180px;
+  border-radius: 40px;
+  margin: 1rem 0; }
+
+.profile-pic .user-name {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: bold; }
+
+.profile-btns {
+  margin-bottom: 1rem; }
+  .profile-btns button {
+    border: 2px solid #1F271B;
+    margin: 0 auto;
+    width: 200px; }
+
+.main-section {
+  margin-bottom: 2rem; }
+
+.song-form {
+  width: 100%;
+  height: 100%;
+  display: none;
+  margin-top: 2rem; }
+
+.playlist-form {
+  width: 100%;
+  height: 100%;
+  display: none;
+  margin-top: 2rem; }
+
+.my-playlist {
+  width: 100%; }
+
+.my-playlist-item {
+  margin-top: 2rem; }
+  .my-playlist-item li {
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 300; }
+
+.grid-col-one {
+  display: grid;
+  grid-template-columns: 1fr; }
+
+@media all and (min-width: 600px) {
+  .grid-col-two {
+    display: grid;
+    grid-template-columns: 1fr 3fr; } }

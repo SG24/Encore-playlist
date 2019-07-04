@@ -8,7 +8,7 @@
 .text-container {
     padding: 0 1rem;
     .main-heading {
-        font-size: 6rem;
+        font-size: 5rem;
         color: rgba($metallic, 0.9);
     }
     .tag-line {
@@ -34,6 +34,9 @@
 
 // Media Query
 @media all and (max-width: 562px) {
+    html {
+        font-size: 12px;
+    }
     .break {
         display: none;
     }

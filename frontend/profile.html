@@ -48,9 +48,69 @@
             </nav>
         </header>
         <!-- Main -->
-        <main>
+        <main class="grid-col-one grid-col-two">
+            <aside>
+                <div class="profile-pic text-center">
+                    <img src="./assets/images/avatar.jpg" alt="">
+                    <p class="user-name">John Doe</p>
+                </div>
+                <section class="buttons profile-btns grid-col-1">
+                    <button id="add-song-btn">Add Song</button>
+                    <button id="create-playlist-btn">Create Playlist</button>
+                    <button id="playlist-btn">My Playlist</button>
+                </section>
+            </aside>
+            <section class="main-section">
+                <article class="song-form text-center" id="song-form">
+                    <h2>Add Song</h2>
+                    <br>
+                    <form action="" class="form-control text-center">
+                        <input type="text" placeholder="Song Name">
+                        <input type="text" placeholder="Genre">
+                        <input type="url" placeholder="Enter song URL">
+                        <input type="submit" value="Submit">
+                    </form>
+                </article>
 
+                <article class="playlist-form" id="playlist-form">
+                    <form action="" class="form-control text-center">
+                        <input type="submit" value="LogIn">
+                    </form>
+                </article>
+
+                <article class="my-playlist text-center" id="my-playlist">
+                    <br>
+                    <h2>My PlayList</h2>
+                    <ul class="my-playlist-item">
+                        <li>Playlist 1</li>
+                        <li>Playlist 2</li>
+                        <li>Playlist 3</li>
+                        <li>Playlist 4</li>
+                    </ul>
+                </article>
+            </section>
         </main>
+
+        <script>
+            document.getElementById("add-song-btn").addEventListener("click", function showForm() {
+                document.getElementById("song-form").style.display = "block";
+                document.getElementById("my-playlist").style.display = "none";
+                document.getElementById("playlist-form").style.display = "none";
+            });
+
+            document.getElementById("create-playlist-btn").addEventListener("click", function showForm1() {
+                document.getElementById("playlist-form").style.display = "block";
+                document.getElementById("my-playlist").style.display = "none";
+                document.getElementById("song-form").style.display = "none";
+            });
+
+            document.getElementById("playlist-btn").addEventListener("click", function showPlaylist() {
+                document.getElementById("playlist-form").style.display = "none";
+                document.getElementById("my-playlist").style.display = "block";
+                document.getElementById("song-form").style.display = "none";
+            });
+        </script>
+
         <!-- Footer -->
         <footer class="footer">
             <nav class="footer-nav">
