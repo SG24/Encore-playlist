@@ -17,6 +17,17 @@
     font-weight: 700;
 }
 
+.genre {
+    select {
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: $darkgray;
+        outline: none;
+    }
+}
+
 .song-container {
     div {
         margin: 1rem 0;

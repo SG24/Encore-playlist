@@ -295,8 +295,6 @@ p {
     color: rgba(255, 255, 255, 0.8); }
 
 @media all and (max-width: 562px) {
-  html {
-    font-size: 12px; }
   .break {
     display: none; } }
 
@@ -395,6 +393,14 @@ aside {
   font-weight: 700; }
   .playlist-header div {
     margin: 2rem 0; }
+
+.genre select {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #5A5766;
+  outline: none; }
 
 .song-container {
   color: #00A7E1;
