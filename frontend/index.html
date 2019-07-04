@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Encore</title>
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700&display=swap" rel="stylesheet">
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/8bc5acd820.js"></script> 
+        <!-- stylesheets -->
+        <link rel="stylesheet" href="./assets/stylesheets/style.css">
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <nav class="flex-between">
+                <h1 class="logo">
+                    <a href="index.html">
+                        <span>Encore</span>
+                    </a>
+                </h1>
+                <div>
+                    <input type="checkbox" id="drop">
+                    <label class="userlinks" for="drop" class="toggle flex-between">
+                        <span class="username">John Doe</span>
+                        <img class="user-icon" src="assets/images/avatar.jpg" alt="Your profile">
+                    </label>
+                    <ul class="links flex-between">
+                        <li class="header-item profile">
+                            <a href="">
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li class="header-item add-playlist">
+                            <a href="">
+                                <span><i class="fas fa-plus-circle"></i> Create Playlist</span>
+                            </a>
+                        </li>
+                        <li class="header-item logout">
+                            <a href="">
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Main -->
+        <main>
+            <section class="playlist-container wrapper">
+                <h2>Playlist</h2>
+                <div class="playlist">
+                    <header class="playlist-header grid-col-3 center-child">
+                        <div class="song">
+                            <span>Song</span>
+                        </div>
+                        <div class="genre">
+                            <!-- <span id="song-category"></span> -->
+                            <select>
+                                <option value="Genere">Genere</option>
+                                <option value="Rock">Rock</option>
+                                <option value="Mello">Mello</option>
+                                <option value="Classical">Classical</option>
+                            </select>
+                            <!-- <ul id="song-category-list">
+                                <li>Genere</li>
+                                <li>Rock</li>
+                                <li>Mello</li>
+                                <li>Classical</li>
+                            </ul> -->
+                        </div>
+                        <div class="votes">
+                            <span>Votes</span>
+                        </div>
+                    </header>
+                    <div class="song-container grid-col-3 center-child">
+                        <div class="song">
+                            <span>Jolene - Ray LaMontagne</span>
+                        </div>
+                        <div class="genre">
+                            <span>Country</span>
+                        </div>
+                        <div class="votes">
+                            <span>100</span>
+                            <span class="upvote">
+                                <i class="fas fa-angle-up"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="song-container grid-col-3 center-child">
+                        <div class="song">
+                            <span>The Scientist - Coldplay</span>
+                        </div>
+                        <div class="genre">
+                            <span>Pop</span>
+                        </div>
+                        <div class="votes">
+                            <span>90</span>
+                            <span class="upvote">
+                                <i class="fas fa-angle-up"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="song-container grid-col-3 center-child">
+                        <div class="song">
+                            <span>Birds - Coldplay</span>
+                        </div>
+                        <div class="genre">
+                            <span>Pop</span>
+                        </div>
+                        <div class="votes">
+                            <span>70</span>
+                            <span class="upvote">
+                                <i class="fas fa-angle-up"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <footer class="pages grid-col-4 center-child">
+                        <div class="pagination">
+                            <span class="previous">
+                                <i class="fas fa-angle-left"></i>
+                            </span>
+                            <span class="next">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </div>
+                    </footer>
+                </div>
+                
+            </section>
+        </main>
+        <!-- Footer -->
+        <footer class="footer">
+            <nav class="footer-nav">
+                <ul class="footer-links flex-center">
+                    <li class="footer-item">
+                        <a href="">
+                            <i class="fas fa-at"></i>
+                        </a>
+                    </li>
+                    <li class="footer-item">
+                        <a href="">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="footer-item">
+                        <a href="">
+                            <i class="fab fa-instagram"></i>    
+                        </a>
+                    </li>
+                    <li class="footer-item">
+                        <a href="">
+                            <i class="fab fa-facebook-f"></i>        
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <section class="footer-bottom">
+                <p><small>&copy;</small> <span>ENCORE</span> by AltCampus</p>
+            </section>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+.profile-pic {
+    img {
+        width: 180px;
+        border-radius: 40px;
+        margin: 1rem 0;
+    }
+    .user-name {
+        margin: 1rem 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+}
+.profile-btns {
+    button {
+        border: 2px solid $text-secondary;
+        margin: 0 auto;
+        width: 200px;
+    }
+    margin-bottom: 1rem;
+}
+
+.main-section {
+    margin-bottom: 2rem;
+}
+
+.song-form {
+    width: 100%;
+    height: 100%;
+    display: none;
+    margin-top: 2rem;
+}
+.playlist-form {
+    width: 100%;
+    height: 100%;
+    display: none;
+    margin-top: 2rem;
+
+    h2 {
+        margin-bottom: 2rem;
+    }
+}
+
+// .hidden {
+//     display: none;
+// }
+
+.add-song {
+    display: none;
+    width: 300px;
+    background: $gray;
+    padding: 1rem;
+    padding-top: 0;
+}
+
+.my-playlist {
+    width: 100%;
+}
+
+.my-playlist-item {
+    margin-top: 2rem;
+    li {
+        padding: 1rem;
+        font-size: 2rem;
+        font-weight: 300;
+    }
+}
+
+.grid-col-one {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+@media all and (min-width: 600px){
+    aside {
+        border-right: 0.5rem solid $gray;
+    }
+    .grid-col-two {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+}

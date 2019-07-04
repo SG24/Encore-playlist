@@ -1,0 +1,63 @@
+.playlist-container {
+    padding: 2rem;
+    h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: $darkgray;
+        letter-spacing: 2px;
+    }
+}
+
+.playlist-header {
+    div {
+        margin: 2rem 0;
+    }
+    color: $darkgray;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.genre {
+    select {
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: $darkgray;
+        outline: none;
+    }
+}
+
+.song-container {
+    div {
+        margin: 1rem 0;
+    }
+    color: $lightblue;
+    font-weight: 700;
+}
+
+.upvote {
+    padding-left: 1rem;
+}
+
+.pages {
+    div {
+        margin: 1.5rem 0;
+    }
+    color: $darkgray;
+}
+
+.pagination {
+    grid-column-start: 4;
+}
+
+.previous, .next {
+    font-size: 1.5rem;
+}
+
+.previous {
+    margin-right: 0.25rem;
+}
+.next {
+    margin-left: 0.25rem;
+}
