@@ -46,6 +46,25 @@ app.set("views", path.join(__dirname, "./server/views"));
 app.set("view engine", "ejs");
 
 // integrating sessions
+
+app.use(
+	session({
+		secret: "encore",
+		resave: true,
+		saveUninitialized: true,
+		store: new MongoStore({ url: "mongodb://localhost/encore-session" })
+	})
+);
+
+// app.use(
+//  session({
+//   secret: "encore",
+//   resave: true,
+//   saveUninitialized: true,
+//   store: new MongoStore({ url: "mongodb://localhost/encore-session" })
+//  })
+// );
+
 app.use(passport.session());
 // serializing and deserializing user sessions
 passport.serializeUser(function(user, done) {
