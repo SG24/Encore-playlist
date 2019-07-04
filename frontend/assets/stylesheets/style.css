@@ -120,6 +120,11 @@ p {
   align-items: center;
   justify-content: space-between; }
 
+.flex-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around; }
+
 .flex-start {
   display: flex;
   align-items: center;
@@ -260,3 +265,53 @@ p {
     margin: 0 2rem; }
     .footer-item a {
       font-size: 1.5rem; } }
+
+.img_background {
+  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url("../media/homeImg.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh; }
+
+.text-container {
+  padding: 0 1rem; }
+  .text-container .main-heading {
+    font-size: 6rem;
+    color: rgba(40, 48, 68, 0.9); }
+  .text-container .tag-line {
+    color: rgba(255, 255, 255, 0.8);
+    padding-bottom: 2rem; }
+
+.buttons button {
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background: transparent;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  cursor: pointer; }
+  .buttons button:hover {
+    background: #96ADC8;
+    color: rgba(255, 255, 255, 0.8); }
+
+@media all and (max-width: 562px) {
+  .break {
+    display: none; } }
+
+.form-control {
+  background: #EBF5EE;
+  width: 360px;
+  padding: 0.8rem;
+  margin: 0 auto; }
+  .form-control input {
+    width: 95%;
+    padding: 0.8rem;
+    margin: 1rem 0;
+    border: 1px solid #283044;
+    font-weight: bold; }
+    .form-control input:focus {
+      border: 2px solid #283044; }
+
+.login-heading {
+  font-size: 2rem;
+  margin: 1rem 0; }
