@@ -316,9 +316,6 @@ p {
   font-size: 2rem;
   margin: 1rem 0; }
 
-aside {
-  border-right: 0.5rem solid #EBF5EE; }
-
 .profile-pic img {
   width: 180px;
   border-radius: 40px;
@@ -375,6 +372,8 @@ aside {
   grid-template-columns: 1fr; }
 
 @media all and (min-width: 600px) {
+  aside {
+    border-right: 0.5rem solid #EBF5EE; }
   .grid-col-two {
     display: grid;
     grid-template-columns: 1fr 3fr; } }
