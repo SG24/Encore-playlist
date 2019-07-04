@@ -7,10 +7,17 @@ const MongoStore = require("connect-mongo")(session);
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
+let cookieParser = require("cookie-parser");
+let passport = require("passport");
+
+// importing config
 const port = require("./server/config/config").port;
 
 // importing routers
 let authRouter = require("./server/routes/auth");
+
+// initialising passport
+app.use(passport.initialize());
 
 // importing github oauth
 require("./server/utils/githubOAuth");
@@ -24,6 +31,7 @@ mongoose.connect(
  }
 )
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -35,14 +43,22 @@ app.set("views", path.join(__dirname, "./server/views"));
 app.set("view engine", "ejs");
 
 // integrating sessions
-app.use(
- session({
-  secret: "encore",
-  resave: true,
-  saveUninitialized: true,
-  store: new MongoStore({ url: "mongodb://localhost/encore-session" })
- })
-);
+// app.use(
+//  session({
+//   secret: "encore",
+//   resave: true,
+//   saveUninitialized: true,
+//   store: new MongoStore({ url: "mongodb://localhost/encore-session" })
+//  })
+// );
+app.use(passport.session());
+// serializing and deserializing user sessions
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 if (process.env.NODE_ENV === "development") {
  var webpack = require("webpack");
