@@ -14,7 +14,8 @@ router.get('/github/callback',
     // if success, returning a token
     let user = req.user;
     let token = user.generateAuthToken();
-    res.json({token, success: true});
+    // res.json({user, token, success: true});
+    res.redirect('/?t=' + token)
   });
 
 // exporting router

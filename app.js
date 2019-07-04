@@ -70,7 +70,7 @@ if (process.env.NODE_ENV === "development") {
 	app.use(require("webpack-hot-middleware")(compiler));
 }
 
-app.use(cors());
+// app.use(cors());
 
 // routing
 app.use("/auth", authRouter);
