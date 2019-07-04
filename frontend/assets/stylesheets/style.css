@@ -188,12 +188,14 @@ p {
 .header {
   width: 100%;
   background: #EBF5EE;
-  padding: 1rem 1rem; }
+  padding: 1rem 2rem; }
 
 .logo {
   font-size: 1.5rem; }
   .logo a {
     color: #96ADC8; }
+    .logo a:hover {
+      color: #00A7E1; }
 
 .userlinks {
   background: #EBF5EE; }
@@ -204,6 +206,8 @@ p {
   font-weight: 700;
   padding: 0.5rem;
   color: #96ADC8; }
+  .username:hover {
+    color: #00A7E1; }
 
 .user-icon {
   border-radius: 50%;
@@ -224,19 +228,19 @@ p {
     font-weight: 700;
     font-size: 0.8rem;
     color: #96ADC8; }
+    .header-item a span:hover {
+      color: #00A7E1; }
 
 @media all and (min-width: 768px) {
   .header {
-    padding: 0 2rem; }
+    padding: 0 4.25rem; }
   .logo {
     font-size: 3rem; }
   .username {
     display: inline; }
   .links {
     width: fit-content;
-    left: initial; }
-  .header-item:hover a span {
-    color: #283044; } }
+    left: initial; } }
 
 .footer {
   padding: 1rem;
@@ -248,9 +252,8 @@ p {
   .footer-item a {
     color: #96ADC8;
     font-size: 1.25rem; }
-
-.footer-item:hover a {
-  color: #FCFF6C; }
+    .footer-item a:hover {
+      color: #61E786; }
 
 .footer-bottom {
   text-align: center;
@@ -258,7 +261,8 @@ p {
   .footer-bottom p {
     font-size: 0.8rem; }
   .footer-bottom span {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.8); }
+    color: #61E786;
+    border-bottom: 1px solid #61E786; }
 
 @media all and (min-width: 768px) {
   .footer-item {
@@ -277,12 +281,13 @@ p {
   padding: 0 1rem; }
   .text-container .main-heading {
     font-size: 5rem;
-    color: rgba(40, 48, 68, 0.9); }
+    color: rgba(255, 255, 255, 0.9); }
   .text-container .tag-line {
     color: rgba(255, 255, 255, 0.8);
     padding-bottom: 2rem; }
 
 .buttons button {
+  color: rgba(255, 255, 255, 0.8);
   padding: 1rem 1.5rem;
   font-size: 1rem;
   font-weight: bold;
@@ -314,7 +319,8 @@ p {
 
 .login-heading {
   font-size: 2rem;
-  margin: 1rem 0; }
+  margin: 1rem 0;
+  color: #5A5766; }
 
 .profile-pic img {
   width: 180px;
@@ -324,14 +330,18 @@ p {
 .profile-pic .user-name {
   margin: 1rem 0;
   font-size: 1.5rem;
-  font-weight: bold; }
+  font-weight: bold;
+  color: #5A5766; }
 
 .profile-btns {
   margin-bottom: 1rem; }
   .profile-btns button {
-    border: 2px solid #1F271B;
+    border: 2px solid #5A5766;
     margin: 0 auto;
-    width: 200px; }
+    width: 200px;
+    color: #5A5766; }
+    .profile-btns button:hover {
+      border: 2px solid rgba(255, 255, 255, 0.8); }
 
 .main-section {
   margin-bottom: 2rem; }
@@ -339,26 +349,30 @@ p {
 .song-form {
   width: 100%;
   height: 100%;
-  display: none;
-  margin-top: 2rem; }
+  display: block;
+  margin-top: 2rem;
+  color: #5A5766; }
 
 .playlist-form {
   width: 100%;
   height: 100%;
-  display: none;
-  margin-top: 2rem; }
+  display: block;
+  margin-top: 2rem;
+  color: #5A5766; }
   .playlist-form h2 {
-    margin-bottom: 2rem; }
+    margin-bottom: 2rem;
+    color: #5A5766; }
 
 .add-song {
-  display: none;
+  display: inline-block;
   width: 300px;
   background: #EBF5EE;
   padding: 1rem;
   padding-top: 0; }
 
 .my-playlist {
-  width: 100%; }
+  width: 100%;
+  color: #5A5766; }
 
 .my-playlist-item {
   margin-top: 2rem; }
@@ -384,11 +398,15 @@ p {
     text-align: center;
     margin-bottom: 2rem;
     color: #5A5766;
-    letter-spacing: 2px; }
+    letter-spacing: 2px;
+    font-size: 1.5rem; }
+
+.playlist .grid-col-3 {
+  grid-gap: 0; }
 
 .playlist-header {
   color: #5A5766;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 700; }
   .playlist-header div {
     margin: 2rem 0; }
@@ -396,7 +414,7 @@ p {
 .genre select {
   background: transparent;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #5A5766;
   outline: none; }
@@ -406,6 +424,8 @@ p {
   font-weight: 700; }
   .song-container div {
     margin: 1rem 0; }
+  .song-container span {
+    font-size: 0.75rem; }
 
 .upvote {
   padding-left: 1rem; }
@@ -420,9 +440,23 @@ p {
 
 .previous, .next {
   font-size: 1.5rem; }
+  .previous:hover, .next:hover {
+    color: #FF9B42; }
 
 .previous {
   margin-right: 0.25rem; }
 
 .next {
   margin-left: 0.25rem; }
+
+@media all and (min-width: 768px) {
+  .playlist-container {
+    font-size: 2.5rem; }
+    .playlist-container h2 {
+      font-size: 2.5rem; }
+  .playlist-header {
+    font-size: 1.5rem; }
+  .song-container span {
+    font-size: 1rem; }
+  .genre select {
+    font-size: 1.5rem; } }
