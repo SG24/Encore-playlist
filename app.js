@@ -7,7 +7,13 @@ const MongoStore = require("connect-mongo")(session);
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-const port = 8000;
+const port = require("./server/config/config").port;
+
+// importing routers
+let authRouter = require("./server/routes/auth");
+
+// importing github oauth
+require("./server/utils/githubOAuth");
 
 // connecting mongoose to mongodb
 mongoose.connect(
@@ -56,6 +62,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(cors());
 
 // routing
+app.use("/auth", authRouter);
 app.use("/api", require("./server/routes/api"));
 app.use(require("./server/routes/index"));
 
