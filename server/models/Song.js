@@ -22,6 +22,11 @@ let songSchema = new mongoose.Schema({
     type: String,
     default: "others",
   },
+  // votes given to the song
+  votes: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  }],
 }, { timestamps: true });
 
 // requiring and exporting model

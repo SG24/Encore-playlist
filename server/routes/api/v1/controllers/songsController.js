@@ -72,7 +72,7 @@ module.exports = {
     if (query.genre) search = { genre: query.genre.toUpperCase() };
     else if (!query.genre) search = {};
 
-    // building start and end indices
+    // building start and end indices, defaulting to returning 10 songs
     query.start ? start = query.start : start = 0;
     query.end ? end = query.end : end = start + 10;
 
@@ -80,6 +80,11 @@ module.exports = {
       if (err) return res.json({ success: false, error: err, message: "Failed to process the request, try again!" });
       if (songArr.length === 0) return res.json({ success: false, message: "Unable to find songs of the requested genre." });
       else if (songArr.length !== 0) {
+        // sorts songs in the list on the basis of number of votes
+        songArr = songArr.sort((a, b) => {
+          return b.votes.length - a.votes.length;
+        });
+        // extracts and returns the songs list
         songsList = songArr.slice(start, end);
         if(songsList.length === 0) return res.json({success: false, message: "Unable to fetch songs at requested indices."});
         return res.json({success: true, songsList});
