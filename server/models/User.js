@@ -32,6 +32,11 @@ let userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Song",
   }],
+  // playlists created by the user
+  playlists: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Playlist",
+  }],
 }, { timestamps: true });
 
 // specifying user fields to be returned upon any query
