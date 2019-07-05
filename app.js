@@ -16,6 +16,7 @@ const port = require("./server/config/config").port;
 // importing routers
 let authRouter = require("./server/routes/auth");
 let errorRouter = require("./server/routes/loginerror");
+let userRouter = require("./server/routes/users");
 
 // initialising passport
 app.use(passport.initialize());
@@ -46,16 +47,6 @@ app.set("views", path.join(__dirname, "./server/views"));
 app.set("view engine", "ejs");
 
 // integrating sessions
-
-app.use(
-	session({
-		secret: "encore",
-		resave: true,
-		saveUninitialized: true,
-		store: new MongoStore({ url: "mongodb://localhost/encore-session" })
-	})
-);
-
 // app.use(
 //  session({
 //   secret: "encore",
@@ -93,9 +84,10 @@ if (process.env.NODE_ENV === "development") {
 
 // routing
 app.use("/auth", authRouter);
-app.use("/api", require("./server/routes/api"));
-app.use(require("./server/routes/index"));
+app.use("/users", userRouter);
+app.use("/api", require("./server/routes/api/api"));
 app.use("/loginerror", errorRouter);
+app.use("/", require("./server/routes/index"));
 
 // adding port
 app.listen(port, () => {

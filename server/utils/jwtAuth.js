@@ -14,6 +14,6 @@ module.exports.authenticateJWT = function (req, res, next) {
       next();
     })
     .catch(error => {
-      res.json({ success: false, message: "Unexpected error occurred.", error });
+      res.json({ success: false, message: "Unexpected error occurred while trying to authenticate the token.", error });
     });
 };

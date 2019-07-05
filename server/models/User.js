@@ -27,6 +27,11 @@ let userSchema = new mongoose.Schema({
   avatar_url: {
     type: String,
   },
+  // songs added by the user
+  songs: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Song",
+  }],
 }, { timestamps: true });
 
 // specifying user fields to be returned upon any query
@@ -56,8 +61,12 @@ userSchema.statics.findByToken = function (token) {
   try {
     decoded = jwt.verify(token, config.SECRET);
   } catch (e) {
-    return Promise.reject({ success: false, error: e });
+    return Promise.reject({ error: e });
   }
+  // return User.findOne({ _id: decoded._id }, (err, user) => {
+  //   if(err) return Promise.reject({error: err});
+  //   return Promise.resolve(user);
+  // });
   return User.findOne({ _id: decoded._id });
 }
 

@@ -1,23 +1,97 @@
-import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
-import Header from './Header';
-import Footer from './Footer';
-import "./stylesheets/main.scss";
+// TODO make page working
 
-import Profile from "./Profile";
+// imports modules
+import React from "react";
+import { Redirect, Link } from "react-router-dom";
+
+// imports resources
+import "./stylesheets/main.scss";
+import userImg from "./images/avatar.jpg";
+
+// imports auth utils
+import auth from "./../utils/auth";
 
 class Dashboard extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			user: null,
+		};
+	}
+
+	componentDidMount = () => {
+		auth.setAxiosHeaders();
+		this.updateUserInfo();
+	}
+
+	// fetches and saves user from localStorage
+	updateUserInfo = () => {
+		let user = auth.getUserID();
+		this.setState({ user: user });
+	}
+
+	// handles log out
+	handleLogOutClick = () => {
+		auth.logOutUser();
+		this.props.history.push("/");
+	}
+
 	render() {
+
+		// extracts variables
+		let { user } = this.state;
+		let { handleLogOutClick } = this;
+
+		// calculates user display info
+		let username = user && user.user && user.user.username ? user.user.username : "Loading...";
+		let avatar_url = user && user.user && user.user.avatar_url ? user.user.avatar_url : userImg;
+
+		// redirecting to home user not found
+		if (user && !user.success) {
+			// TODO fix async call below
+			auth.logOutUser();
+			return (<Redirect to="/" />);
+		}
+
+		// returns JSx
 		return (
-			<>
-				{/* Header */}
-				<Header />
-				<h1>Dashboard</h1>
-				<Link to="/profile">Profile</Link>
-				<BrowserRouter>
-					<Route path="/profile" component={Profile} />
-				</BrowserRouter>
-				{/* Main */}
+
+			<div>
+				{/* <!-- Header --> */}
+				<header className="header">
+					<nav className="flex-between">
+						<h1 className="logo">
+							<Link to="/dashboard">
+								<span>Encore</span>
+							</Link>
+						</h1>
+						<div>
+							<input type="checkbox" id="drop" />
+							<label htmlFor="drop" className="userlinks" className="toggle flex-between">
+								<span className="username">{username}</span>
+								<img className="user-icon" src={avatar_url} alt="Your profile" />
+							</label>
+							<ul className="links flex-between">
+								<li className="header-item profile">
+									<Link to="/me/3">
+										<span>Profile</span>
+									</Link>
+								</li>
+								<li className="header-item add-playlist">
+									<Link to="/me/2">
+										<span><i className="fas fa-plus-circle"></i> Create Playlist</span>
+									</Link>
+								</li>
+								<li className="header-item logout">
+									<a onClick={handleLogOutClick} href="#">
+										<span>Logout</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</header>
+				{/* <!-- Main --> */}
 				<main>
 					<section className="playlist-container wrapper">
 						<h2>Playlist</h2>
@@ -27,12 +101,19 @@ class Dashboard extends React.Component {
 									<span>Song</span>
 								</div>
 								<div className="genre">
+									{/* <!-- <span id="song-category"></span> --> */}
 									<select>
-										<option value="Genere">Genere</option>
+										<option value="Genere">Genre</option>
 										<option value="Rock">Rock</option>
 										<option value="Mello">Mello</option>
 										<option value="Classical">Classical</option>
 									</select>
+									{/* <!-- <ul id="song-category-list">
+                                <li>Genere</li>
+                                <li>Rock</li>
+                                <li>Mello</li>
+                                <li>Classical</li>
+                            </ul> --> */}
 								</div>
 								<div className="votes">
 									<span>Votes</span>
@@ -91,11 +172,41 @@ class Dashboard extends React.Component {
 								</div>
 							</footer>
 						</div>
+
 					</section>
 				</main>
-				{/* Footer */}
-				<Footer />
-			</>
+				{/* <!-- Footer --> */}
+				<footer className="footer">
+					<nav className="footer-nav">
+						<ul className="footer-links flex-center">
+							<li className="footer-item">
+								<a>
+									<i className="fas fa-at"></i>
+								</a>
+							</li>
+							<li className="footer-item">
+								<a>
+									<i className="fab fa-twitter"></i>
+								</a>
+							</li>
+							<li className="footer-item">
+								<a>
+									<i className="fab fa-instagram"></i>
+								</a>
+							</li>
+							<li className="footer-item">
+								<a>
+									<i className="fab fa-facebook-f"></i>
+								</a>
+							</li>
+						</ul>
+					</nav>
+					<section className="footer-bottom">
+						<p><small>&copy;</small> <span>ENCORE</span> by AltCampus</p>
+					</section>
+				</footer>
+			</div>
+
 		);
 	}
 }

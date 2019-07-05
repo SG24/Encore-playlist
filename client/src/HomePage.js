@@ -15,13 +15,20 @@ class Home extends React.Component {
   }
 
   componentDidMount = () => {
-    // if token exists in local storage, redirects to dashboard
-    if (auth.getUserID().success) {
-      return (<Redirect to="/dashboard" />);
-    }
+    auth.setAxiosHeaders();
   }
 
   render() {
+
+    // if token exists in local storage, redirects to dashboard 
+    if (auth.getUserID().success || this.props.location.search.split("=").length === 2) {
+      // TODO Need to fix the async call below because of which we need to click on login twice
+      // fetching and saving user data
+      auth.setUserID(this.props.location.search.split("=")[1]);
+      // redirects to dashboard
+      return (<Redirect to="/dashboard" />);
+    }
+
     // returning JSx
     return (
 

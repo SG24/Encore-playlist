@@ -16,7 +16,12 @@ let songSchema = new mongoose.Schema({
   url: {
     type: String,
     default: "https://www.youtube.com",
-  }
+  },
+  // genre of the song, pre-defined possible values
+  genre: {
+    type: String,
+    default: "others",
+  },
 }, { timestamps: true });
 
 // requiring and exporting model
