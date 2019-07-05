@@ -27,6 +27,11 @@ let userSchema = new mongoose.Schema({
   avatar_url: {
     type: String,
   },
+  // songs added by the user
+  songs: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Song",
+  }],
 }, { timestamps: true });
 
 // specifying user fields to be returned upon any query

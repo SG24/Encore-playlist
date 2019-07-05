@@ -6,6 +6,7 @@ import axios from "axios";
 let auth = {
   // sets default axios headers
   setAxiosHeaders: function () {
+    axios.defaults.headers.post["Content-Type"] = "application/json";
     axios.defaults.headers["x-auth"] = localStorage.getItem("encore-token");
   },
 
