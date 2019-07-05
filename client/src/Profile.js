@@ -4,12 +4,16 @@
 // imports modules
 import React from "react";
 import { Redirect, Link } from "react-router-dom";
+import uuidv4 from "uuid/v4";
 
 // imports resources
 import auth from "./../utils/auth";
 import functions from "./../utils/functions";
 import "./stylesheets/main.scss";
 import userImg from "./images/avatar.jpg";
+
+// declares global consants and variables
+const _gGENRE_ARR = ["EDM", "ROCK", "POP", "ROCK", "RAP", "OTHERS"];
 
 class Profile extends React.Component {
 	constructor() {
@@ -22,13 +26,24 @@ class Profile extends React.Component {
 			genre: "",
 			name: "",
 			url: "",
+			// playlist input fields data
+			playlist: _gGENRE_ARR.map(genre => {
+				return { genre, number: 0 };
+			}),
+			playlistName: "",
 		};
 	}
 
 	componentDidMount = () => {
 		auth.setAxiosHeaders();
 		let activeTab = Number(this.props.match.params.tab);
-		this.setState({ activeTab });
+		// let playlist = _gGENRE_ARR.map(genre => {
+		// 	return {genre, number: 0};
+		// });
+		this.setState({
+			activeTab: activeTab,
+			//  playlist: playlist,
+		});
 		this.updateUserInfo();
 	}
 
@@ -68,13 +83,13 @@ class Profile extends React.Component {
 	// handles song submit click
 	handleSongSubmitClick = () => {
 		// extracts variables
-		let {name, genre, url} = this.state;
+		let { name, genre, url } = this.state;
 
-		if(name.length === 0 || genre.length === 0){
-			alert("Please give the required argumnets");
+		if (name.length === 0 || genre.length === 0) {
+			alert("Please give the required arguments");
 		}
 		else {
-			functions.addNewSong({name, genre, url});
+			functions.addNewSong({ name, genre, url });
 		}
 
 		// resets state
@@ -85,11 +100,38 @@ class Profile extends React.Component {
 		});
 	}
 
+	// handles playlist input change
+	handlePlaylistInputChange = (event) => {
+
+		if(event.target.name === "playlistName") {
+			let name = event.target.value;
+			this.setState({playlistName: name});
+			return 0;
+		}
+
+		let targetIndex = event.target.dataset.index;
+		let playlist = this.state.playlist;
+		playlist[targetIndex].number++;
+		this.setState({ playlist });
+	}
+
+	// handles playlist create click
+	handlePlaylistCreateClick = () => {
+		let newPlaylist = this.state.playlist;
+		let newPlaylistName = this.state.playlistName;
+		functions.createNewPlaylist(newPlaylist, newPlaylistName);
+		// resets playlist in state
+		let playlist = _gGENRE_ARR.map(genre => {
+			return { genre, number: 0 };
+		});
+		this.setState({ playlist, playlistName: "" });
+	}
+
 	render() {
 
 		// extracts variables
-		let { user, name, genre, url } = this.state;
-		let { handleLogOutClick, updateActiveTabDisplay, handleActiveTabChange, handleInputChange, handleSongSubmitClick } = this;
+		let { user, name, genre, url, playlist, playlistName } = this.state;
+		let { handleLogOutClick, updateActiveTabDisplay, handleActiveTabChange, handleInputChange, handleSongSubmitClick, handlePlaylistInputChange, handlePlaylistCreateClick } = this;
 
 		// calculates user display info
 		let username = user && user.user && user.user.username ? user.user.username : "Loading...";
@@ -170,15 +212,31 @@ class Profile extends React.Component {
 						</article>
 
 						<article className={tabClasses[1]} id="playlist-form">
-							<h2>Create Playlist</h2>
-							<form action="" className="form-control text-center">
-								<input id="search-song" type="text" placeholder="Search your Song" />
-							</form>
+							<h2>Create Your Dynamic Playlist</h2>
 							<div className="hidden">
 								<span className="add-song">
-									<i className="fas fa-plus-circle"></i>
-									<span>Add Your Own Song</span>
+									<span>Add Number of songs to include in each genre</span>
 								</span>
+							</div>
+							<div className="form-control text-center">
+
+								<input value={playlistName} name="playlistName" onChange={handlePlaylistInputChange} type="text" placeholder="Name of your playlist" />
+
+								{
+									_gGENRE_ARR.map((genre, ind) => {
+										return (
+											<div key={uuidv4()}>
+												<label>
+													{genre}
+													<input value={playlist[ind].number} onChange={handlePlaylistInputChange} data-index={ind} id={genre} type="number" placeholder="0" />
+												</label>
+											</div>
+										);
+									})
+								}
+
+								<button onClick={handlePlaylistCreateClick}>Create</button>
+
 							</div>
 						</article>
 

@@ -60,16 +60,19 @@ module.exports = {
     })
   },
 
+  // TODO: TEST THIS FUNCTION AND FINISH DASHBOARD
   // returns list of songs
   // returns the requested number of songs of the desired genre: expected query: {genre(default=undefined), start(required, by default return 10 most voted songs), end(default=undefined)}
   returnSongList: function (req, res, next) {
-    let query = req.body;
+    let query = req.body.data;
     console.log(query);
     let search;
     let start;
     let end;
     // building search query
-    if (query.genre) search = { genre: query.genre.toUpperCase() };
+    if (query.genre) {
+      search = { genre: fixGenre(query.genre).toUpperCase() };
+    }
     else if (!query.genre) search = {};
 
     // building start and end indices, defaulting to returning 10 songs
