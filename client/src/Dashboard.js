@@ -16,12 +16,17 @@ class Dashboard extends React.Component {
 		super();
 		this.state = {
 			user: null,
+			isLoadingSongs: true,
+			message: null,
+			songsData: null
 		};
 	}
 
 	componentDidMount = () => {
 		auth.setAxiosHeaders();
 		this.updateUserInfo();
+		this.fetchSongs();
+		this.loadSongs();
 	}
 
 	// fetches and saves user from localStorage
@@ -36,11 +41,33 @@ class Dashboard extends React.Component {
 		this.props.history.push("/");
 	}
 
+	// loades songs
+	loadSongs = (genre, start = 0, end = 10) => {
+		// Return array of songs object
+		return genre;
+	}
+
+	fetchSongs() {
+		// Where we're fetching data from
+		fetch(/* Url of songs data */)
+		  .then(response => response.json())
+		  // ...then we update the songsData state
+		  .then(data =>
+			this.setState({
+			  songsData: data,
+			  isLoading: false,
+			})
+		  )
+		  // Catch any errors we hit and update the app
+		  .catch(message => this.setState({ message, isLoading: false }));
+	  }
+
 	render() {
 
 		// extracts variables
 		let { user } = this.state;
 		let { handleLogOutClick } = this;
+		let { songsData, isLoadingSongs } = this.state;
 
 		// calculates user display info
 		let username = user && user.user && user.user.username ? user.user.username : "Loading...";
@@ -119,7 +146,32 @@ class Dashboard extends React.Component {
 									<span>Votes</span>
 								</div>
 							</header>
-							<div className="song-container grid-col-3 center-child">
+
+							{/* EXP */}
+							{ // Updates dashboard with songs
+								!isLoadingSongs ? ( songsData.length > 0 && 
+								songsData.map((song, index) => (
+								<div key={index} className="song-container grid-col-3 center-child">
+									<div className="song">
+										<span>{song.name}</span>
+									</div>
+									<div className="genre">
+										<span>{song.genre}</span>
+									</div>
+									<div className="votes">
+										<span>{song.votes}</span>
+										<span className="upvote">
+											<i className="fas fa-angle-up"></i>
+										</span>
+									</div>
+								</div>
+								))
+								) : (
+									<p className="loading-text">Data is loading...</p>
+								)
+							}
+							{/* EXP Above */}
+							{/* <div className="song-container grid-col-3 center-child">
 								<div className="song">
 									<span>Jolene - Ray LaMontagne</span>
 								</div>
@@ -160,7 +212,7 @@ class Dashboard extends React.Component {
 										<i className="fas fa-angle-up"></i>
 									</span>
 								</div>
-							</div>
+							</div> */}
 							<footer className="pages grid-col-4 center-child">
 								<div className="pagination">
 									<span className="previous">
