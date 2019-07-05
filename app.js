@@ -85,7 +85,7 @@ if (process.env.NODE_ENV === "development") {
 // routing
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
-app.use("/api", require("./server/routes/api"));
+app.use("/api", require("./server/routes/api/api"));
 app.use("/loginerror", errorRouter);
 app.use("/", require("./server/routes/index"));
 
