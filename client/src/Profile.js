@@ -1,4 +1,5 @@
 // TODO: make tabs working
+// TODO: fix create playlist form
 
 // imports modules
 import React from "react";
@@ -19,6 +20,7 @@ class Profile extends React.Component {
 	}
 
 	componentDidMount = () => {
+		auth.setAxiosHeaders();
 		let activeTab = Number(this.props.match.params.tab);
 		this.setState({activeTab});
 		this.updateUserInfo();

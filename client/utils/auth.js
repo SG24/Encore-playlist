@@ -4,6 +4,10 @@
 import axios from "axios";
 
 let auth = {
+  // sets default axios headers
+  setAxiosHeaders: function () {
+    axios.defaults.headers["x-auth"] = localStorage.getItem("encore-token");
+  },
 
   // gets user data from localStorage
   getUserID: function () {
@@ -21,27 +25,28 @@ let auth = {
   // fetches and stores user info
   setUserID: function (token) {
     fetch("/users/" + token)
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        localStorage.setItem("encore-avatar", data.user.avatar_url);
-        localStorage.setItem("encore-email", data.user.email);
-        localStorage.setItem("encore-name", data.user.name);
-        localStorage.setItem("encore-username", data.user.username);
-        localStorage.setItem("encore-success", true);
-      }
-      else if (!data.success) {
-        alert(data.message);
-        localStorage.setItem("encore-error", data.message);
-        localStorage.setItem("encore-success", false);
-      }
-    });
-},
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          localStorage.setItem("encore-avatar", data.user.avatar_url);
+          localStorage.setItem("encore-email", data.user.email);
+          localStorage.setItem("encore-name", data.user.name);
+          localStorage.setItem("encore-username", data.user.username);
+          localStorage.setItem("encore-success", true);
+          localStorage.setItem("encore-token", token);
+        }
+        else if (!data.success) {
+          alert(data.message);
+          localStorage.setItem("encore-error", data.message);
+          localStorage.setItem("encore-success", false);
+        }
+      });
+  },
 
   // logs user out of the device
   logOutUser: function () {
     localStorage.clear();
-},
+  },
 
 };
 

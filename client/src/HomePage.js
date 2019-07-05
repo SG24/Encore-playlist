@@ -14,6 +14,10 @@ class Home extends React.Component {
     };
   }
 
+  componentDidMount = () => {
+    auth.setAxiosHeaders();
+  }
+
   render() {
 
     // if token exists in local storage, redirects to dashboard 

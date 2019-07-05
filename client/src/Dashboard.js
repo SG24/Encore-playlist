@@ -19,7 +19,10 @@ class Dashboard extends React.Component {
 		};
 	}
 
-	componentDidMount = () => this.updateUserInfo()
+	componentDidMount = () => {
+		auth.setAxiosHeaders();
+		this.updateUserInfo();
+	}
 
 	// fetches and saves user from localStorage
 	updateUserInfo = () => {
