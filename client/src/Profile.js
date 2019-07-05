@@ -14,11 +14,13 @@ class Profile extends React.Component {
 		super();
 		this.state = {
 			user: null,
-			activeTab: 3,
+			activeTab: 0,
 		};
 	}
 
 	componentDidMount = () => {
+		let activeTab = Number(this.props.match.params.tab);
+		this.setState({activeTab});
 		this.updateUserInfo();
 	}
 
@@ -34,7 +36,7 @@ class Profile extends React.Component {
 		let activeTab = this.state.activeTab;
 		const tabs = ["song-form", "playlist-form", "my-playlists"];
 		return tabs.map((block, ind) => {
-			return ind === activeTab - 1 ? `${block} text-center display-block` : `${block} text-center display-none`;
+			return ind === Number(activeTab) - 1 ? `${block} text-center display-block` : `${block} text-center display-none`;
 		});
 	}
 
@@ -43,12 +45,18 @@ class Profile extends React.Component {
 		auth.logOutUser();
 		this.props.history.push("/");
 	}
+	
+	// handle active tab change
+	handleActiveTabChange = (event) => {
+		let activeTab = event.target.dataset.tab ? Number(event.target.dataset.tab) : Number(event.target.parentElement.dataset.tab);
+		this.setState({activeTab: activeTab});
+	}
 
 	render() {
 
 		// extracts variables
 		let { user } = this.state;
-		let { handleLogOutClick, updateActiveTabDisplay } = this;
+		let { handleLogOutClick, updateActiveTabDisplay, handleActiveTabChange } = this;
 
 		// calculates user display info
 		let username = user && user.user && user.user.username ? user.user.username : "Loading...";
@@ -83,17 +91,17 @@ class Profile extends React.Component {
 							</label>
 							<ul className="links flex-between">
 								<li className="header-item profile">
-									<Link to="/me">
+									<a onClick={handleActiveTabChange} data-tab="3">
 										<span>Profile</span>
-									</Link>
+									</a>
 								</li>
 								<li className="header-item add-playlist">
-									<Link to="/me">
-										<span><i className="fas fa-plus-circle"></i> Create Playlist</span>
-									</Link>
+									<a onClick={handleActiveTabChange} data-tab="2">
+										<i className="fas fa-plus-circle"></i> <span> Create Playlist</span>
+									</a>
 								</li>
 								<li className="header-item logout">
-									<a onClick={handleLogOutClick} href="#">
+									<a onClick={handleLogOutClick}>
 										<span>Logout</span>
 									</a>
 								</li>
@@ -109,9 +117,9 @@ class Profile extends React.Component {
 							<p className="user-name">{username}</p>
 						</div>
 						<section className="buttons profile-btns grid-col-1">
-							<button id="add-song-btn">Add Song</button>
-							<button id="create-playlist-btn">Create Playlist</button>
-							<button id="playlist-btn">My Playlists</button>
+							<button data-tab="1" onClick={handleActiveTabChange} id="add-song-btn">Add Song</button>
+							<button data-tab="2" onClick={handleActiveTabChange} id="create-playlist-btn">Create Playlist</button>
+							<button data-tab="3" onClick={handleActiveTabChange} id="playlist-btn">My Playlists</button>
 						</section>
 					</aside>
 

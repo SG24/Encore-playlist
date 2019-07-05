@@ -70,12 +70,12 @@ class Dashboard extends React.Component {
 							</label>
 							<ul className="links flex-between">
 								<li className="header-item profile">
-									<Link to="/me">
+									<Link to="/me/3">
 										<span>Profile</span>
 									</Link>
 								</li>
 								<li className="header-item add-playlist">
-									<Link to="/me">
+									<Link to="/me/2">
 										<span><i className="fas fa-plus-circle"></i> Create Playlist</span>
 									</Link>
 								</li>
@@ -177,22 +177,22 @@ class Dashboard extends React.Component {
 					<nav className="footer-nav">
 						<ul className="footer-links flex-center">
 							<li className="footer-item">
-								<a href="">
+								<a>
 									<i className="fas fa-at"></i>
 								</a>
 							</li>
 							<li className="footer-item">
-								<a href="">
+								<a>
 									<i className="fab fa-twitter"></i>
 								</a>
 							</li>
 							<li className="footer-item">
-								<a href="">
+								<a>
 									<i className="fab fa-instagram"></i>
 								</a>
 							</li>
 							<li className="footer-item">
-								<a href="">
+								<a>
 									<i className="fab fa-facebook-f"></i>
 								</a>
 							</li>
