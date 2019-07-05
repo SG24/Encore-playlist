@@ -7,6 +7,7 @@ import { Redirect, Link } from "react-router-dom";
 
 // imports resources
 import auth from "./../utils/auth";
+import functions from "./../utils/functions";
 import "./stylesheets/main.scss";
 import userImg from "./images/avatar.jpg";
 
@@ -14,15 +15,20 @@ class Profile extends React.Component {
 	constructor() {
 		super();
 		this.state = {
+			// user data and active tab state
 			user: null,
 			activeTab: 0,
+			// song form input field values
+			genre: "",
+			name: "",
+			url: "",
 		};
 	}
 
 	componentDidMount = () => {
 		auth.setAxiosHeaders();
 		let activeTab = Number(this.props.match.params.tab);
-		this.setState({activeTab});
+		this.setState({ activeTab });
 		this.updateUserInfo();
 	}
 
@@ -31,7 +37,7 @@ class Profile extends React.Component {
 		let user = auth.getUserID();
 		this.setState({ user: user });
 	}
-	
+
 	// updates active tab display
 	// returns an array of classes for the three divs in the given order depending upon the active tab
 	updateActiveTabDisplay = () => {
@@ -47,18 +53,43 @@ class Profile extends React.Component {
 		auth.logOutUser();
 		this.props.history.push("/");
 	}
-	
+
 	// handle active tab change
 	handleActiveTabChange = (event) => {
 		let activeTab = event.target.dataset.tab ? Number(event.target.dataset.tab) : Number(event.target.parentElement.dataset.tab);
-		this.setState({activeTab: activeTab});
+		this.setState({ activeTab: activeTab });
+	}
+
+	// handles input value change
+	handleInputChange = (event) => {
+		this.setState({ [event.target.name]: event.target.value });
+	}
+
+	// handles song submit click
+	handleSongSubmitClick = () => {
+		// extracts variables
+		let {name, genre, url} = this.state;
+
+		if(name.length === 0 || genre.length === 0){
+			alert("Please give the required argumnets");
+		}
+		else {
+			functions.addNewSong({name, genre, url});
+		}
+
+		// resets state
+		this.setState({
+			name: "",
+			genre: "",
+			url: "",
+		});
 	}
 
 	render() {
 
 		// extracts variables
-		let { user } = this.state;
-		let { handleLogOutClick, updateActiveTabDisplay, handleActiveTabChange } = this;
+		let { user, name, genre, url } = this.state;
+		let { handleLogOutClick, updateActiveTabDisplay, handleActiveTabChange, handleInputChange, handleSongSubmitClick } = this;
 
 		// calculates user display info
 		let username = user && user.user && user.user.username ? user.user.username : "Loading...";
@@ -130,12 +161,12 @@ class Profile extends React.Component {
 						<article className={tabClasses[0]} id="song-form">
 							<h2>Add Song</h2>
 							<br />
-							<form action="" className="form-control text-center">
-								<input type="text" placeholder="Song Name" />
-								<input type="text" placeholder="Genre" />
-								<input type="url" placeholder="Enter song URL" />
-								<input type="submit" value="Submit" />
-							</form>
+							<div className="form-control text-center">
+								<input value={name} onChange={handleInputChange} name="name" type="text" placeholder="Song Name" />
+								<input value={genre} onChange={handleInputChange} name="genre" type="text" placeholder="Genre" />
+								<input value={url} onChange={handleInputChange} name="url" type="url" placeholder="Enter song URL" />
+								<input onClick={handleSongSubmitClick} type="submit" value="Submit" />
+							</div>
 						</article>
 
 						<article className={tabClasses[1]} id="playlist-form">

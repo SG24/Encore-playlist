@@ -22,7 +22,8 @@ let fixGenre = function (genre) {
 module.exports = {
   // adds new song document
   newSong: function (req, res, next) {
-    let { name, genre, url } = req.body;
+
+    let { name, genre, url } = req.body.data;
 
     // requiring logged in user
     let user;
@@ -57,6 +58,32 @@ module.exports = {
         });
       }
     })
+  },
 
+  // returns list of songs
+  // returns the requested number of songs of the desired genre: expected query: {genre(default=undefined), start(required, by default return 10 most voted songs), end(default=undefined)}
+  returnSongList: function (req, res, next) {
+    let query = req.body;
+    console.log(query);
+    let search;
+    let start;
+    let end;
+    // building search query
+    if (query.genre) search = { genre: query.genre.toUpperCase() };
+    else if (!query.genre) search = {};
+
+    // building start and end indices
+    query.start ? start = query.start : start = 0;
+    query.end ? end = query.end : end = start + 10;
+
+    Song.find(search, (err, songArr) => {
+      if (err) return res.json({ success: false, error: err, message: "Failed to process the request, try again!" });
+      if (songArr.length === 0) return res.json({ success: false, message: "Unable to find songs of the requested genre." });
+      else if (songArr.length !== 0) {
+        songsList = songArr.slice(start, end);
+        if(songsList.length === 0) return res.json({success: false, message: "Unable to fetch songs at requested indices."});
+        return res.json({success: true, songsList});
+      }
+    });
   }
 };
