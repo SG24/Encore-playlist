@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "This is the code for frontend in HTML & CSS",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass ./assets/stylesheets/main.scss ./assets/stylesheets/style.css"
+  },
+  "keywords": [
+    "HTML",
+    "SCSS",
+    "CSS"
+  ],
+  "author": "Shivam Chahar",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^4.12.0"
+  }
+}
